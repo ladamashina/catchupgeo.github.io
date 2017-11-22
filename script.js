@@ -16,7 +16,7 @@ function geoFindMe() {
   var cordinatsArray = [];
   var distance = 0;
   function success(position) {
-    var latitude = position.coords.latitude;
+    var latitude = position.coords.altitude;
     var longitude = position.coords.longitude;
     latitude += counter;
     longitude += counter;
