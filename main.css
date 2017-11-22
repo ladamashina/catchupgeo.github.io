@@ -1,0 +1,27 @@
+body {
+  display: flex;
+
+    
+    background-color:#ffffc9
+  }
+  
+  p { margin : 0; }
+
+  .unit{margin: 20px; 
+}  
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+  height: 30px;
+}
+
+#myBar {
+  
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  
+}
+#out{
+  display:  baseline;
+}
