@@ -23,8 +23,8 @@ function geoFindMe() {
     distance += chekDistance(cordinatsArray);
     var elem = document.getElementById("myBar");
     elem.style.width = distance/500 + '%';
-
-    output.innerHTML = '<div>Now you have ' + distance.toFixed(1) + 'm from 500m </div>';
+    var represintation = distance;
+    output.innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
     if(distance == 500) return;
   };
 
