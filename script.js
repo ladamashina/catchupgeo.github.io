@@ -39,10 +39,10 @@ function geoFindMe() {
 
 function chekDistance(cordinatsArray) {
   if (cordinatsArray.length < 6) return 0;
-  var x1 = cordinatsArray[1];
-  var y1 = cordinatsArray[2];
-  var x2 = cordinatsArray[4];
-  var y2 = cordinatsArray[5];
+  var x1 = cordinatsArray[0];
+  var y1 = cordinatsArray[1];
+  var x2 = cordinatsArray[3];
+  var y2 = cordinatsArray[4];
   var xdiff = x2 - x1;
   var ydiff = y2 - y1;
   var result = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
