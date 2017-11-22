@@ -22,19 +22,24 @@ function geoFindMe() {
     cordinatsArray.push(altitude);
     distance += chekDistance(cordinatsArray);
     var elem = document.getElementById("myBar");
-    elem.style.width = distance/500 + '%';
+    elem.style.width = distance / 500 + '%';
     var represintation = distance;
     document.getElementById("out2").innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
     output.innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
-    if(distance == 500) return;
+    if (distance == 500) return;
   };
 
   function error() {
     output.innerHTML = "Unable to retrieve your location";
   };
+  options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 
   output.innerHTML = "<p>Locating...</p>";
-  navigator.geolocation.watchPosition(success, error)
+  navigator.geolocation.watchPosition(success, error, options)
 }
 //next function
 
