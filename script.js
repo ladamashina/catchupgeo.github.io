@@ -4,11 +4,10 @@ function startGeoGame() {
   StartStop();
 }
 
-var counter = 0.00000001;
 
 function geoFindMe() {
+  
   var output = document.getElementById("out");
-
   if (!navigator.geolocation) {
     output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
     return;
@@ -16,10 +15,9 @@ function geoFindMe() {
   var cordinatsArray = [];
   var distance = 0;
   function success(position) {
-    var latitude = position.coords.altitude;
+    var latitude = position.coords.latitude; //wrong coordinate
     var longitude = position.coords.longitude;
-    latitude += counter;
-    longitude += counter;
+
    // var altitude = position.coords.altitude;
     //if (altitude === null) altitude = 1;
     cordinatsArray.push(latitude);
@@ -30,7 +28,7 @@ function geoFindMe() {
     elem.style.width = distance / 500 + '%';
     var represintation = distance;
     document.getElementById("out2").innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-    output.innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
+    document.getElementById("out").innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
   if (distance == 500) {
     alert("You Win!")
     return;}
@@ -57,14 +55,22 @@ function chekDistance(cordinatsArray) {
   var y1 = cordinatsArray[1];
   var x2 = cordinatsArray[2];
   var y2 = cordinatsArray[3];
-  var xdiff = x2 - x1;
-  var ydiff = y2 - y1;
-  var result = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
-  for (let i = 0; i < 2; i++) cordinatsArray.shift;
-
-  return result;
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(x2-x1);  // deg2rad below
+  var dLon = deg2rad(y2-y1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c /1000; // Distance in km
+  return d;
 }
 
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 
 
 //next function
