@@ -24,6 +24,7 @@ function geoFindMe() {
     var elem = document.getElementById("myBar");
     elem.style.width = distance/500 + '%';
     var represintation = distance;
+    document.getElementById("out2").innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
     output.innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
     if(distance == 500) return;
   };
