@@ -3,6 +3,9 @@ function startGeoGame() {
   geoFindMe();
   StartStop();
 }
+
+var counter = 0.00000001;
+
 function geoFindMe() {
   var output = document.getElementById("out");
 
@@ -15,6 +18,8 @@ function geoFindMe() {
   function success(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+    latitude += counter;
+    longitude += counter;
    // var altitude = position.coords.altitude;
     //if (altitude === null) altitude = 1;
     cordinatsArray.push(latitude);
@@ -26,20 +31,23 @@ function geoFindMe() {
     var represintation = distance;
     document.getElementById("out2").innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
     output.innerHTML = '<div>Now you have ' + represintation.toFixed(1) + 'm from 500m </div>';
-    if (distance == 500) return;
+  if (distance == 500) {
+    alert("You Win!")
+    return;}
   };
-
+ 
   function error() {
     output.innerHTML = "Unable to retrieve your location";
   };
   options = {
     enableHighAccuracy: true,
-    timeout: 5000,
+    timeout: 100,
     maximumAge: 0
   };
 
   output.innerHTML = "<p>Locating...</p>";
-  navigator.geolocation.watchPosition(success, error, options)
+    navigator.geolocation.watchPosition(success, error, options)
+   
 }
 //next function
 
