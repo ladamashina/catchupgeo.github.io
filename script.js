@@ -15,11 +15,11 @@ function geoFindMe() {
   function success(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
-    var altitude = position.coords.altitude;
+   // var altitude = position.coords.altitude;
     if (altitude === null) altitude = 1;
     cordinatsArray.push(latitude);
     cordinatsArray.push(longitude);
-    cordinatsArray.push(altitude);
+   // cordinatsArray.push(altitude);
     distance += chekDistance(cordinatsArray);
     var elem = document.getElementById("myBar");
     elem.style.width = distance / 500 + '%';
@@ -44,15 +44,15 @@ function geoFindMe() {
 //next function
 
 function chekDistance(cordinatsArray) {
-  if (cordinatsArray.length < 6) return 0;
+  if (cordinatsArray.length < 4) return 0;
   var x1 = cordinatsArray[0];
   var y1 = cordinatsArray[1];
-  var x2 = cordinatsArray[3];
-  var y2 = cordinatsArray[4];
+  var x2 = cordinatsArray[2];
+  var y2 = cordinatsArray[3];
   var xdiff = x2 - x1;
   var ydiff = y2 - y1;
   var result = Math.pow((xdiff * xdiff + ydiff * ydiff), 0.5);
-  for (let i = 0; i < 3; i++) cordinatsArray.shift;
+  for (let i = 0; i < 2; i++) cordinatsArray.shift;
 
   return result;
 }
